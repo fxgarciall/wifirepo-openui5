@@ -1,0 +1,14 @@
+<mvc:View 
+    xmlns:html="http://www.w3.org/1999/xhtml" 
+    xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 
+    controllerName="WiFiRepo.controller.inicial">
+	<App>
+		<pages>
+			<Page title="{i18n>titulo}" id="searchWiFi">
+			<content>
+			    
+			</content>
+		</Page>
+		</pages>
+	</App>
+</mvc:View>
