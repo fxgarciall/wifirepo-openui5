@@ -15,7 +15,7 @@
 			"version": "0.0.0"
 		},
 		"dataSources": {
-			
+
 		}
 	},
 	"sap.ui": {
@@ -50,7 +50,8 @@
 			"libs": {
 				"sap.ui.core": {},
 				"sap.m": {},
-				"sap.ui.layout": {}
+				"sap.ui.layout": {},
+				"openui5.googlemaps": {}
 			}
 		},
 		"contentDensities": {
@@ -58,10 +59,7 @@
 			"cozy": true
 		},
 		"models": {
-			"": {
-				
-			},
-			"data": {
+			"globalWiFiList": {
 				"type": "sap.ui.model.json.JSONModel",
 				"uri": "model/data.json"
 			},
@@ -91,9 +89,14 @@
 					"target": "home"
 				},
 				{
-					"pattern": "recepcion/{SHEDID}/{ORDERID}",
-					"name": "recepcion",
-					"target": "recepcion"
+					"pattern": "detail/{wifiPath}",
+					"name": "detail",
+					"target": "detail"
+				},
+				{
+					"pattern": "new",
+					"name": "new",
+					"target": "new"
 				}
 			],
 			"targets": {
@@ -101,8 +104,8 @@
 					"viewName": "inicial",
 					"viewLevel": 0
 				},
-				"recepcion": {
-					"viewName": "recepcion",
+				"detail": {
+					"viewName": "Detail",
 					"viewLevel": 1
 				},
 				"notFound": {
@@ -111,8 +114,8 @@
 				"errorOdata": {
 					"viewName": "ErrorOdata"
 				},
-				"NoShedFound": {
-					"viewName": "NoShedFound"
+				"new": {
+					"viewName": "New"
 				}
 			}
 		},

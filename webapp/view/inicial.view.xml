@@ -1,14 +1,24 @@
-<mvc:View 
-    xmlns:html="http://www.w3.org/1999/xhtml" 
-    xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" 
+<mvc:View
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
     controllerName="WiFiRepo.controller.inicial">
 	<App>
 		<pages>
-			<Page title="{i18n>titulo}" id="searchWiFi">
-			<content>
-			    
-			</content>
-		</Page>
+      <Page id="searchWiFi" title="{i18n>titulo}">
+    		<headerContent>
+    		</headerContent>
+    		<content>
+    			<mvc:XMLView viewName="WiFiRepo.view.WiFiList"/>
+    		</content>
+    		<footer>
+    			<Bar>
+    				<contentRight>
+    					<Button id="new" text="New" press="handleNewPress" />
+    				</contentRight>
+    			</Bar>
+    		</footer>
+    	</Page>
 		</pages>
 	</App>
 </mvc:View>

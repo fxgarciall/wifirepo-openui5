@@ -1,0 +1,30 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<sap.ui.layout.form:SimpleForm id="ChangeDetail"
+			xmlns:sap.ui.layout.form="sap.ui.layout.form"
+			xmlns:sap.m="sap.m"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			title="WiFi Detail">
+			<sap.ui.layout.form:content>
+				<core:Title text="{WiFi>/ssid}"/>
+				<Label text="Title"/>
+				<Text value="{WiFi>/ssid}"/>
+				<Label text="Password"/>
+				<Input value="{WiFi>/password}"/>
+				<Label text="Summary"/>
+				<Input value="{WiFi>/summary}"/>
+        <Label text="Likes"/>
+				<Text text="{WiFi>/likes}"/>
+				<Label text="Unlikes"/>
+				<Text text="{WiFi>/unlikes}"/>
+				<Label text="Latitude" />
+				<Text text="{WiFi>/lat}"/>
+        <Label text="Longitude" />
+				<Text text="{WiFi>/lon}"/>
+			</sap.ui.layout.form:content>
+		</sap.ui.layout.form:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>

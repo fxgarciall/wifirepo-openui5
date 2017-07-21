@@ -19,12 +19,11 @@ sap.ui.define([
 		init: function() {
 			// call the base component's init function
 			UIComponent.prototype.init.apply(this, arguments);
-			
-            // create the views based on the url/hash
-            this.getRouter().initialize();
-            
-			// set the device model
+			// create the views based on the url/hash
+      this.getRouter().initialize();
+      // set the device model
 			this.setModel(models.createDeviceModel(), "device");
+			
 		},
 		/**
 		 * This method can be called to determine whether the sapUiSizeCompact or sapUiSizeCozy

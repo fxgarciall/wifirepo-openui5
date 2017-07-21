@@ -1,0 +1,87 @@
+<mvc:View
+  controllerName="WiFiRepo.controller.WiFiList"
+  xmlns="sap.m"
+  xmlns:l="sap.ui.layout"
+  xmlns:mvc="sap.ui.core.mvc">
+    <List
+      items="{
+        path: '/',
+        sorter: {
+          path: '_id'
+        }
+              }"
+      headerText="WiFi Available"
+      growing="true"
+      growingThreshold="10"
+      growingScrollToLoad="false">
+      <StandardListItem
+        title="{ssid}"
+        description="{summary}"
+        iconDensityAware="false"
+        type="Active"
+        iconInset="false"
+        press="onPress"
+        />
+    </List>
+
+
+    <!--
+    <Panel
+      headerText="{i18n>helloPanelTitle}"
+      class="sapUiResponsiveMargin"
+			width="auto">
+        <content>
+          <Table
+						id="idWiFiTable"
+						inset="false"
+						items="{
+							path: '/',
+							sorter: {
+								path: '_id'
+							}
+						        }">
+								<headerToolbar>
+									<Toolbar>
+										<Title text="WiFis" level="H2"/>
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column
+										width="12em">
+										<Text text="{i18n>ssid}" />
+									</Column>
+									<Column
+										minScreenWidth="Tablet"
+										demandPopin="true">
+										<Text text="{i18n>likes}" />
+									</Column>
+									<Column
+										minScreenWidth="Tablet"
+										demandPopin="true">
+										<Text text="{i18n>unlikes}" />
+									</Column>
+									<Column
+										hAlign="Center">
+										<Text text="{i18n>summary}" />
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem
+										type="Navigation"
+										press="onPress">
+										<cells>
+											<Text
+												text="{ssid}" />
+											<Text
+												text="{likes}" />
+											<Text
+												text="{unlikes}" />
+											<Text
+												text="{summary}" />
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+                  		</content>
+               		</Panel> -->
+</mvc:View>

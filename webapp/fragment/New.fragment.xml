@@ -1,0 +1,32 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:gmaps="openui5.googlemaps">
+	<VBox class="sapUiSmallMargin">
+		<sap.ui.layout.form:SimpleForm id="New"
+			xmlns:sap.ui.layout.form="sap.ui.layout.form"
+			xmlns:sap.m="sap.m"
+			editable="false"
+			layout="ResponsiveGridLayout"
+			title="New WiFi Details">
+			<sap.ui.layout.form:content>
+				<core:Title text="Please provide following data"/>
+				<Label text="Title"/>
+				<Input value="{WiFi>/ssid}"/>
+				<Label text="Password"/>
+				<Input value="{WiFi>/password}"/>
+				<Label text="Summary"/>
+				<Input value="{WiFi>/summary}"/>
+				<Label text="Latitude" />
+				<Text text="{WiFi>/lat}"/>
+        <Label text="Longitude" />
+				<Text text="{WiFi>/lon}"/>
+			</sap.ui.layout.form:content>
+		</sap.ui.layout.form:SimpleForm>
+		<gmaps:Map height="400px" zoom="16" lat="{WiFi>/lat}" lng="{WiFi>/lon}" apiKey="AIzaSyCPjbYb9sKMJTghwCOrb-zX_OuiaIZZeCA">
+			<gmaps:markers>
+				<gmaps:Marker lat="{WiFi>/lat}" lng="{WiFi>/lon}" info="New WiFi" icon="http://maps.google.com/mapfiles/kml/pal2/icon2.png"></gmaps:Marker>
+			</gmaps:markers>
+		</gmaps:Map>
+	</VBox>
+</core:FragmentDefinition>

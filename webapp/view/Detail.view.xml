@@ -1,0 +1,23 @@
+<mvc:View
+	height="100%"
+	controllerName="WiFiRepo.controller.Detail"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m">
+	<Page
+		id="page"
+		showNavButton="true"
+		navButtonPress="onNavBack">
+		<footer>
+			<Bar>
+				<contentRight>
+					<Button id="edit" text="Edit" press="handleEditPress" />
+					<Button id="delete" text="Delete" type="Reject" press="handleDeletePress" />
+					<Button id="save" text="Save" type="Emphasized" visible="false" press="handleSavePress" />
+					<Button id="cancel" text="Cancel" visible="false" press="handleCancelPress" />
+				</contentRight>
+			</Bar>
+		</footer>
+	</Page>
+</mvc:View>
