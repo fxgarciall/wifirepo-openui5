@@ -75,15 +75,13 @@ sap.ui.define([
           //Refresh Model. Get Global List
           var oGlobalWiFiList = sap.ui.getCore().getModel("globalWiFiList");
           //Get JSON Object
-          var oGlobalWiFiListJSON = oGlobalWiFiList.getJSON();
+          var oGlobalWiFiListJSON = oGlobalWiFiList.getData();
+          console.log(data);
           //Push New WiFi
-          oGlobalWiFiListJSON.push(oModel.getJSON());
+          oGlobalWiFiListJSON.push(data);
           //Set New JSON To Global Model
-          oGlobalWiFiList.setJSON(oGlobalWiFiListJSON);
+          oGlobalWiFiList.setData(oGlobalWiFiListJSON);
           sap.ui.getCore().getModel(oGlobalWiFiList, "globalWiFiList");
-
-          //var oModelTVShows = that.getView().getModel();
-					//oModelTVShows.loadData('http://localhost:8888/proxy/api/tvshows');
 
           //Nav Back
 					var oHistory = History.getInstance();
@@ -103,46 +101,15 @@ sap.ui.define([
             	}
 			});
 
-
-			/*
-			//Save the data...
-			var oModel = this.getView().getModel("TVShow");
-			oModel.loadData(modelPath,oModel.getData(),true,"POST");
-			*/
-			//this._toggleButtonsAndView(false);
-
-
-
 		},
 
 
 		_onObjectMatched: function (oEvent) {
-			var oArgs, oView;
+
+      var oArgs, oView;
 			oArgs = oEvent.getParameter("arguments");
 			oView = this.getView();
-
-
-			// create a TVShow Model
-            var oNewWiFi = new JSONModel();
-            // load data from URL
-            //modelPath = "http://localhost:8888/proxy/api/tvshows/" + oArgs.id;
-            //oTVShowModel.loadData(modelPath);
-            //Set This Model to the View
-            //oView.setModel(oTVShowModel,"TVShow");
-
-            /*
-			oView.bindElement({
-				path : "/(" + oArgs.id + ")",
-				events : {
-					change: this._onBindingChange.bind(this),
-					dataRequested: function (oEvent) {
-						oView.setBusy(true);
-					},
-					dataReceived: function (oEvent) {
-						oView.setBusy(false);
-					}
-				}
-			}); */
+      var oNewWiFi = new JSONModel();
 
 		},
 		_onBindingChange : function (oEvent) {
@@ -181,12 +148,8 @@ sap.ui.define([
 		_showFormFragment : function (sFragmentName) {
 			var oPage = this.getView().byId("page");
 
-			//var oModel = this.getView().getModel("TVShow")
-
 			oPage.removeAllContent();
 			oPage.insertContent(this._getFormFragment(sFragmentName));
-
-			//this.getView().setModel(oModel,"TVShow");
 
 		}
 	});

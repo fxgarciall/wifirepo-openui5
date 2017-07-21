@@ -74,6 +74,7 @@ sap.ui.define([
 					oView.setModel(updatedWiFi, "WiFi");
 					MessageToast.show("Updated", {duration: 2000});
 					that._toggleButtonsAndView(false);
+					//TODO: Update Global Model with the Updates
 
 				},
 				error: function(error) {
@@ -82,62 +83,30 @@ sap.ui.define([
 				}
 			});
 
-
-/*
-			//Save the data...
-			//
-
-			var that = this;
-			var oModel = this.getView().getModel("TVShow");
-			var oData = oModel.getData();
-
-			jQuery.ajax({
-				type: "PUT",
-				contentType : "application/json",
-				url : modelPath,
-				dataType : "json",
-				async: true,
-				data: JSON.stringify(oData),
-				success : function(data,textStatus, jqXHR) {
-                	console.log("success to Update");
-                	MessageToast.show("Successfully Updated",{duration: 2000});
-                	that._toggleButtonsAndView(false);
-            	},
-            	error : function(err){
-            		//Restore the data
-					var oModel = that.getView().getModel("TVShow");
-					var oData = oModel.getData();
-					oData = that._globalData;
-					oModel.setData(oData);
-            		that._toggleButtonsAndView(false);
-
-            		MessageToast.show("Error Occurred, Try Again",{duration: 2000});
-            		console.log(err);
-            	}
-			});
-*/
 		},
 
 		handleDeletePress: function(){
 			//Delete From Model
-			//var oModel = this.getView().getModel("TVShow");
-			//oModel.loadData(modelPath,oModel.getData(),true,"DELETE");
-
 			var that = this;
-/*
-			jQuery.ajax({
-				type: "DELETE",
-				contentType : "application/json",
-				url : modelPath,
-				dataType : "json",
-				async: true,
-				success : function(data,textStatus, jqXHR) {
-                	console.log("success to delete");
-                	MessageToast.show("Successfully Deleted",{duration: 2000});
+			console.log(oGlobalWiFi.getProperty("/_id"));
+			console.log(oGlobalWiFi.getJSON());
+			var ssid = oGlobalWiFi.getProperty("/_id");
+			var oView = this.getView();
 
-                	//Refresh Model and go Back
-					var oModelTVShows = that.getView().getModel();
-					oModelTVShows.loadData('http://localhost:8888/proxy/api/tvshows');
+			//Call Service to Delete WiFi
+			$.ajax({
+				async: true,
+				url: constants.servicePreffix() + "/wifi/" + ssid,
+				method: "DELETE",
+				headers: {
+					authorization: "Basic YW5kcm9pZDphbmRyb2lkX011czFDQjB4"
+				},
+				success: function(result) {
+
+					MessageToast.show("WiFi Deleted", {duration: 2000});
+					that._toggleButtonsAndView(false);
+					//TODO: Update Global Model with the Deleted WiFi
+
 					//Nav Back
 					var oHistory = History.getInstance();
 					var sPreviousHash = oHistory.getPreviousHash();
@@ -145,17 +114,16 @@ sap.ui.define([
 					if (sPreviousHash !== undefined) {
 						window.history.go(-1);
 					} else {
-					var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
-					oRouter.navTo("overview", true);
+						var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
+						oRouter.navTo("overview", true);
 					}
 
-            	},
-            	error : function(err){
-            		console.log("Error");
-            		console.log(err);
-            	}
+				},
+				error: function(error) {
+					MessageToast.show("Error updating WiFi", {duration: 2000});
+					that._toggleButtonsAndView(false);
+				}
 			});
-*/
 
 		},
 
@@ -283,7 +251,6 @@ sap.ui.define([
 
 			//oFormFragment = sap.ui.xmlfragment(this.getView().getId(), "WiFiRepo.fragment." + sFragmentName);
 			oFormFragment = sap.ui.xmlfragment("WiFiRepo.fragment." + sFragmentName, this );
-
 			return this._formFragments[sFragmentName] = oFormFragment;
 		},
 
@@ -291,10 +258,8 @@ sap.ui.define([
 			var oPage = this.getView().byId("page");
 
 			//var oModel = this.getView().getModel("TVShow")
-
 			oPage.removeAllContent();
 			oPage.insertContent(this._getFormFragment(sFragmentName));
-			//this.getView().setModel(oModel,"TVShow");
 
 		}
 	});

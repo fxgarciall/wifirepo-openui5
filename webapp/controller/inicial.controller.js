@@ -76,6 +76,7 @@ sap.ui.define([
 												var length = result.length;
 												that.getView().byId("searchWiFi").setBusy(false);
 												if (length === 0) {
+													  //TODO: Call NotWiFiFound View
 														console.log("No WiFi Found");
 														//that._noConfigFound();
 												} else {
@@ -91,6 +92,7 @@ sap.ui.define([
 												}
 										},
 										error: function(error) {
+												//TODO: Call NotWiFiFound View
 												console.log("Error, no Wifi Found");
 												console.log(error);
 												that.getView().byId("searchWiFi").setBusy(false);
@@ -122,7 +124,7 @@ sap.ui.define([
 
 
 						/*
-            //Llamada ajax al servicio para obtener las WiFi
+            //Ajax Call to get all WiFi on Server
             $.ajax({
                 async: true,
                 url: constants.servicePreffix() + "/wifi/",
@@ -164,61 +166,15 @@ sap.ui.define([
 				},
 
         _noConfigFound: function() {
-            clientID = "2";
-            partnerID = "17";
-            farmID = "1";
-            centerID = "2";
-            this._configFound();
+
+						//this._configFound();
+
         },
 
         _configFound: function() {
-            var message = this.getOwnerComponent().getModel("i18n").getResourceBundle().getText("NoShedForHousing");
-            var router = sap.ui.core.UIComponent.getRouterFor(this);
-            var oModel = this.getView().getModel("data");
 
-            console.log(clientID);
-            console.log(partnerID);
-            console.log(farmID);
-            console.log(centerID);
-
-            //Llamada ajax al servicio para obtener los galpones adecuados:
-            $.ajax({
-                async: true,
-                //url: constants.servicePreffix() + "/operationShed.xsjs?clientID=1&partnerID=1&farmID=1&centerID=2&status=Disponible+para+alojamiento&broilerslot=1",
-                url: constants.servicePreffix() + "/operationShed.xsjs?clientID=" + clientID + "&partnerID=" + partnerID + "&farmID=" + farmID + "&centerID=" + centerID + "&status=Disponible+para+alojamiento&broilerslot=1",
-                method: "GET",
-                success: function(result) {
-                    var length = result.results.length;
-                    oModel.setProperty("/galpones/", result.results);
-                    console.log(oModel);
-                    console.log(length);
-
-                    if (length === 0) {
-                        var dialog = new Dialog({
-                            title: "",
-                            type: "Message",
-                            content: new Text({
-                                text: message
-                            }),
-                            beginButton: new Button({
-                                text: "OK",
-                                press: function() {
-                                    dialog.close();
-                                }
-                            }),
-                            afterClose: function() {
-                                dialog.destroy();
-                            }
-                        });
-                        dialog.open();
-                    }
-
-                },
-                error: function(error) {
-                    console.log(error);
-                    router.getTargets().display("errorOdata");
-                }
-            });
+						//var router = sap.ui.core.UIComponent.getRouterFor(this);
+            //var oModel = this.getView().getModel("data");
 
         }
 
