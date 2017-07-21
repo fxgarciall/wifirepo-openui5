@@ -97,6 +97,11 @@
 					"pattern": "new",
 					"name": "new",
 					"target": "new"
+				},
+				{
+					"pattern": "nowififound",
+					"name": "notFound",
+					"target": "notFound"
 				}
 			],
 			"targets": {
@@ -109,7 +114,7 @@
 					"viewLevel": 1
 				},
 				"notFound": {
-					"viewName": "NotFound"
+					"viewName": "NoWiFiFound"
 				},
 				"errorOdata": {
 					"viewName": "ErrorOdata"

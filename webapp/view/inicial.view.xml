@@ -2,6 +2,7 @@
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
     controllerName="WiFiRepo.controller.inicial">
 	<App>
 		<pages>
@@ -10,7 +11,11 @@
     		</headerContent>
     		<content>
     			<mvc:XMLView viewName="WiFiRepo.view.WiFiList"/>
-    		</content>
+          <l:VerticalLayout
+            class="sapUiContentPadding"
+            id="oStripContent"
+            width="100%"/>
+        </content>
     		<footer>
     			<Bar>
     				<contentRight>

@@ -1,0 +1,26 @@
+<mvc:View
+  xmlns:core="sap.ui.core"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:html="http://www.w3.org/1999/xhtml"
+  controllerName="WiFiRepo.controller.NoWiFiFound">
+	<App>
+		<MessagePage
+	      title="{i18n>NoWiFiFound}"
+	      text="{i18n>NoWiFiFound.text}"
+	      description="{i18n>NoWiFiFound.description}"
+	      navButtonPress="goBack"
+	      showNavButton="true">
+
+        <footer>
+          <Bar>
+            <contentRight>
+              <Button id="new" text="New" press="handleNewPress" />
+            </contentRight>
+          </Bar>
+        </footer>
+
+    </MessagePage>
+
+	</App>
+</mvc:View>

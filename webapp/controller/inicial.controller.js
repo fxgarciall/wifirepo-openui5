@@ -4,11 +4,12 @@ sap.ui.define([
     "sap/m/Text",
     "sap/ui/core/mvc/Controller",
     "sap/m/MessageBox",
+    "sap/m/MessageStrip",
     "WiFiRepo/model/formatter",
     "WiFiRepo/constants/constants",
     "openui5/googlemaps/MapUtils",
     "sap/ui/model/json/JSONModel",
-], function(Button, Dialog, Text, Controller, MessageBox, formatter, constants, MapUtils, JSONModel) {
+], function(Button, Dialog, Text, Controller, MessageBox, MessageStrip, formatter, constants, MapUtils, JSONModel) {
     "use strict";
 
     var clientID = "";
@@ -45,11 +46,17 @@ sap.ui.define([
 
 						var dummy = this.getView().getModel("data");
             var that = this;
+						var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 
-						var getLocationCallback = function(oPos) {
+
+            var getLocationCallback = function(oPos) {
 							console.log(oPos);
 							console.log(this);
 							console.log(that);
+							// testing position for an Empty List
+							// Lat: 49.1732609, Lon: -124.0072314
+							//oPos.lat = 49.1732609;
+							//oPos.lng = -124.0072314;
 
 							//Set Global Lat, lon
 							var oGlobalLatLon = new JSONModel(oPos);
@@ -76,13 +83,34 @@ sap.ui.define([
 												var length = result.length;
 												that.getView().byId("searchWiFi").setBusy(false);
 												if (length === 0) {
-													  //TODO: Call NotWiFiFound View
+													  //TODO: Call NoWiFiFound View
 														console.log("No WiFi Found");
+														//oRouter.navTo("notFound");
+                            var oMsgStrip = sap.ui.getCore().byId("msgStrip");
+                            if(oMsgStrip){
+                              oMsgStrip.destroy();
+                            }
+
+                            oMsgStrip = new sap.m.MessageStrip(
+                              "msgStrip",
+                              {
+                                text: "{i18n>NoWiFiFound.text}",
+                                showCloseButton: true,
+                                showIcon: true,
+                                type: "Information"
+                              }
+                            );
+                            var oStripContent = that.getView().byId("oStripContent");
+                            oStripContent.addContent(oMsgStrip);
 														//that._noConfigFound();
 												} else {
 														console.log("WiFi Found");
 														console.log(result);
-														var oWiFiList = new JSONModel(result);
+                            var oMsgStrip = sap.ui.getCore().byId("msgStrip");
+                            if(oMsgStrip){
+                              oMsgStrip.destroy();
+                            }
+                            var oWiFiList = new JSONModel(result);
 														//Set This Model to the View
 														//that.getView().setModel(oWiFiList, "globalWiFiList");
 														that.getView().setModel(oWiFiList);
@@ -92,7 +120,7 @@ sap.ui.define([
 												}
 										},
 										error: function(error) {
-												//TODO: Call NotWiFiFound View
+												//TODO: Call NoWiFiFound View
 												console.log("Error, no Wifi Found");
 												console.log(error);
 												that.getView().byId("searchWiFi").setBusy(false);

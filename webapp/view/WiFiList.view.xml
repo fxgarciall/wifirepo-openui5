@@ -23,8 +23,6 @@
         press="onPress"
         />
     </List>
-
-
     <!--
     <Panel
       headerText="{i18n>helloPanelTitle}"

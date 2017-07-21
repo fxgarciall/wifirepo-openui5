@@ -29,6 +29,11 @@ sap.ui.define([
       var oNewWiFi= new JSONModel();
       oNewWiFi.setProperty("/lat",oGlobalLatLon.getProperty("/lat"));
       oNewWiFi.setProperty("/lon",oGlobalLatLon.getProperty("/lng"));
+			oNewWiFi.setProperty("/ssid","");
+			oNewWiFi.setProperty("/password","");
+			oNewWiFi.setProperty("/summary","");
+			oNewWiFi.setProperty("/likes",0);
+			oNewWiFi.setProperty("/unlikes",0);
       //Assign to the view
       var oView = this.getView();
       oView.setModel(oNewWiFi,"WiFi");
@@ -74,14 +79,18 @@ sap.ui.define([
 
           //Refresh Model. Get Global List
           var oGlobalWiFiList = sap.ui.getCore().getModel("globalWiFiList");
-          //Get JSON Object
-          var oGlobalWiFiListJSON = oGlobalWiFiList.getData();
-          console.log(data);
-          //Push New WiFi
-          oGlobalWiFiListJSON.push(data);
-          //Set New JSON To Global Model
-          oGlobalWiFiList.setData(oGlobalWiFiListJSON);
-          sap.ui.getCore().getModel(oGlobalWiFiList, "globalWiFiList");
+					if (oGlobalWiFiList) {
+						//Get JSON Object
+						var oGlobalWiFiListJSON = oGlobalWiFiList.getData();
+						//Push New WiFi
+						oGlobalWiFiListJSON.push(data);
+						//Set New JSON To Global Model
+						oGlobalWiFiList.setData(oGlobalWiFiListJSON);
+						sap.ui.getCore().setModel(oGlobalWiFiList, "globalWiFiList");
+					}else{
+						var oGlobalWiFiListJSON = new JSONModel(data);
+						sap.ui.getCore().setModel(oGlobalWiFiList, "globalWiFiList");
+					}
 
           //Nav Back
 					var oHistory = History.getInstance();
@@ -90,8 +99,8 @@ sap.ui.define([
 					if (sPreviousHash !== undefined) {
 						window.history.go(-1);
 					} else {
-					var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
-					oRouter.navTo("overview", true);
+						var oRouter = sap.ui.core.UIComponent.getRouterFor(that);
+						oRouter.navTo("appHome", {}, false /*no history*/);
 					}
 
             	},
@@ -106,10 +115,21 @@ sap.ui.define([
 
 		_onObjectMatched: function (oEvent) {
 
-      var oArgs, oView;
-			oArgs = oEvent.getParameter("arguments");
-			oView = this.getView();
-      var oNewWiFi = new JSONModel();
+			var oArgs = oEvent.getParameter("arguments"),
+			    oView = this.getView();
+			//Get Global Lat lon
+			var oGlobalLatLon = sap.ui.getCore().getModel("globalLatLon");
+			var oNewWiFi = new JSONModel();
+			
+			oNewWiFi.setProperty("/lat",oGlobalLatLon.getProperty("/lat"));
+			oNewWiFi.setProperty("/lon",oGlobalLatLon.getProperty("/lng"));
+			oNewWiFi.setProperty("/ssid","");
+			oNewWiFi.setProperty("/password","");
+			oNewWiFi.setProperty("/summary","");
+			oNewWiFi.setProperty("/likes",0);
+			oNewWiFi.setProperty("/unlikes",0);
+			//Assign to the view
+			oView.setModel(oNewWiFi,"WiFi");
 
 		},
 		_onBindingChange : function (oEvent) {
