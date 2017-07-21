@@ -1,0 +1,20 @@
+<mvc:View
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    controllerName="WiFiRepo.controller.Logon">
+    <App>
+      <Page title="Logon Form">
+        <content>
+          <VBox fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
+            <items>
+              <Input id="user" placeholder="Username"></Input>
+              <Input id="pass" placeholder="Password" type="Password"></Input>
+              <Button width="12rem" text="Login" type="Emphasized" press="onLogin"></Button>
+            </items>
+          </VBox>
+        </content>
+      </Page>
+    </App>
+</mvc:View>

@@ -85,7 +85,12 @@
 			"routes": [
 				{
 					"pattern": "",
-					"name": "appHome",
+					"name": "logon",
+					"target": "logon"
+				},
+				{
+					"pattern": "list",
+					"name": "list",
 					"target": "home"
 				},
 				{
@@ -105,13 +110,17 @@
 				}
 			],
 			"targets": {
+				"logon": {
+					"viewName": "Logon",
+					"viewLevel": 0
+				},
 				"home": {
 					"viewName": "inicial",
-					"viewLevel": 0
+					"viewLevel": 1
 				},
 				"detail": {
 					"viewName": "Detail",
-					"viewLevel": 1
+					"viewLevel": 2
 				},
 				"notFound": {
 					"viewName": "NoWiFiFound"

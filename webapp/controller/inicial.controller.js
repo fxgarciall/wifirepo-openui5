@@ -12,19 +12,14 @@ sap.ui.define([
 ], function(Button, Dialog, Text, Controller, MessageBox, MessageStrip, formatter, constants, MapUtils, JSONModel) {
     "use strict";
 
-    var clientID = "";
-    var partnerID = "";
-    var farmID = "";
-    var centerID = "";
-
-
     return Controller.extend("WiFiRepo.controller.inicial", {
 
         formatter: formatter,
 
         onInit: function() {
             var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-            oRouter.getRoute("appHome").attachMatched(this._onRouteMatched, this);
+            oRouter.getRoute("list").attachMatched(this._onRouteMatched, this);
+
         },
 
 
