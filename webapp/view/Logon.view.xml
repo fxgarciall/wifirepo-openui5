@@ -5,7 +5,7 @@
     xmlns:l="sap.ui.layout"
     controllerName="WiFiRepo.controller.Logon">
     <App>
-      <Page title="Logon Form">
+      <Page title="Logon Form" id="logonForm">
         <content>
           <VBox fitContainer="true" justifyContent="Center" alignItems="Center" alignContent="Center">
             <items>

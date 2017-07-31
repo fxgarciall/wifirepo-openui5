@@ -41,6 +41,10 @@
 	},
 	"sap.ui5": {
 		"_version": "1.0.0",
+		"resourceRoots":{
+			"WiFiRepo": "./",
+			"openui5": "./openui5"
+		},
 		"rootView": {
 			"viewName": "WiFiRepo.view.App",
 			"type": "XML"

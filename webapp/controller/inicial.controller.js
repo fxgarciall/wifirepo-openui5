@@ -57,6 +57,9 @@ sap.ui.define([
 							var oGlobalLatLon = new JSONModel(oPos);
 							sap.ui.getCore().setModel(oGlobalLatLon, "globalLatLon");
 
+              //Get Global Auth data
+              var authModel = sap.ui.getCore().getModel("globalAuthData");
+
 							if (oPos.lat!==undefined) {
 
 								that.getView().byId("searchWiFi").setBusy(true);
@@ -71,7 +74,7 @@ sap.ui.define([
 										url: constants.servicePreffix() + "/wifis",
 										method: "PUT",
 										headers: {
-												authorization: "Basic YW5kcm9pZDphbmRyb2lkX011czFDQjB4"
+												authorization: "Basic " + authModel.getProperty("/Auth")
 										},
 										data: myPos,
 										success: function(result) {

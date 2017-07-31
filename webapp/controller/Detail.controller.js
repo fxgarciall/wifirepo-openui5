@@ -57,7 +57,8 @@ sap.ui.define([
 				password: oGlobalWiFi.getProperty("/password")
 			};
 			console.log(changeJSON);
-
+			//Get Global Auth data
+			var authModel = sap.ui.getCore().getModel("globalAuthData");
 
 			//Call Service to Update WiFi
 			$.ajax({
@@ -65,7 +66,7 @@ sap.ui.define([
 				url: constants.servicePreffix() + "/wifi/" + ssid,
 				method: "PUT",
 				headers: {
-					authorization: "Basic YW5kcm9pZDphbmRyb2lkX011czFDQjB4"
+					authorization: "Basic " + authModel.getProperty("/Auth")
 				},
 				data: changeJSON,
 				success: function(result) {
@@ -93,13 +94,16 @@ sap.ui.define([
 			var ssid = oGlobalWiFi.getProperty("/_id");
 			var oView = this.getView();
 
+			//Get Global Auth data
+			var authModel = sap.ui.getCore().getModel("globalAuthData");
+
 			//Call Service to Delete WiFi
 			$.ajax({
 				async: true,
 				url: constants.servicePreffix() + "/wifi/" + ssid,
 				method: "DELETE",
 				headers: {
-					authorization: "Basic YW5kcm9pZDphbmRyb2lkX011czFDQjB4"
+					authorization: "Basic " + authModel.getProperty("/Auth")
 				},
 				success: function(result) {
 
@@ -145,13 +149,16 @@ sap.ui.define([
 			var ssid = oGlobalWiFi.getProperty("/_id");
 			var oView = this.getView();
 
+			//Get Global Auth data
+			var authModel = sap.ui.getCore().getModel("globalAuthData");
+
 			//Call Service to Like WiFi
 			$.ajax({
 				async: true,
 				url: constants.servicePreffix() + "/wifi/" + ssid + "/like",
 				method: "PUT",
 				headers: {
-					authorization: "Basic YW5kcm9pZDphbmRyb2lkX011czFDQjB4"
+					authorization: "Basic " + authModel.getProperty("/Auth")
 				},
 				success: function(result) {
 
@@ -173,13 +180,16 @@ sap.ui.define([
 			var ssid = oGlobalWiFi.getProperty("/_id");
 			var oView = this.getView();
 
+			//Get Global Auth data
+			var authModel = sap.ui.getCore().getModel("globalAuthData");
+
 			//Call Service to Like WiFi
 			$.ajax({
 				async: true,
 				url: constants.servicePreffix() + "/wifi/" + ssid + "/unlike",
 				method: "PUT",
 				headers: {
-					authorization: "Basic YW5kcm9pZDphbmRyb2lkX011czFDQjB4"
+					authorization: "Basic " + authModel.getProperty("/Auth")
 				},
 				success: function(result) {
 

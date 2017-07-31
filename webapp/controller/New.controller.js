@@ -63,12 +63,16 @@ sap.ui.define([
 			var that = this;
 			//Save the Data
 			var oModel = this.getView().getModel("WiFi");
+
+			//Get Global Auth data
+			var authModel = sap.ui.getCore().getModel("globalAuthData");
+
 			jQuery.ajax({
 				type: "POST",
 				contentType : "application/json",
 				url: constants.servicePreffix() + "/wifi",
         headers: {
-            authorization: "Basic YW5kcm9pZDphbmRyb2lkX011czFDQjB4"
+            authorization: "Basic " + authModel.getProperty("/Auth")
         },
         dataType : "json",
 				async: true,
@@ -120,7 +124,7 @@ sap.ui.define([
 			//Get Global Lat lon
 			var oGlobalLatLon = sap.ui.getCore().getModel("globalLatLon");
 			var oNewWiFi = new JSONModel();
-			
+
 			oNewWiFi.setProperty("/lat",oGlobalLatLon.getProperty("/lat"));
 			oNewWiFi.setProperty("/lon",oGlobalLatLon.getProperty("/lng"));
 			oNewWiFi.setProperty("/ssid","");
